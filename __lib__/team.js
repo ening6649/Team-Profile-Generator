@@ -6,13 +6,16 @@ class Employee {
         this.id = id;
         this.email;
     }
-    getName() {
-
+    getName(name) {
+        return name;
     }
-    getEmail(){
-
+    getEmail(email){
+        return email;
     }
-    getId(){
+    getId(id){
+        this.id.forEach(element => {
+            
+        });
 
     }
     getRole(){
@@ -22,6 +25,34 @@ class Employee {
 
 class Manager extends Employee {
     constructor() {
+        this.officeNumber = officeNumber;
         
+    }
+    getRole() {
+        return 'Manager'
+    }
+}
+
+class Engineer extends Employee {
+    constructor() {
+        this.github = github;
+    }
+    getGithub() {
+
+    }
+    getRole () {
+        return 'Engineer'
+    }
+}
+
+class Intern extends Employee {
+    constructor() {
+        this.school=school;
+    }
+    getSchool() {
+
+    }
+    getRole() {
+        return 'Intern'
     }
 }

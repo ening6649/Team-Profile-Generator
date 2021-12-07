@@ -1,8 +1,11 @@
 const inquirer = require("inquirer")
 const fs = require("fs")
-const generateMarkdown = require("./utils/generateMarkdown")
-const promptQuestions = ()=> {
- 
+const generateSite = require ("./src/page-template")
+
+const promptQuestions = data=> {
+    if (!data.teamArr) {
+        data.teamArr= [];
+    }
     return inquirer.prompt([
         
         {
@@ -44,27 +47,55 @@ const promptQuestions = ()=> {
                 }
             }
         },
-  
-
- 
-   
+        {
+            type: 'input',
+            name: 'officenumber',
+            message: 'Enter the office number(Required)',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter an office number!');
+                    return false;
+                }
+            }
+        },
         {
             type: 'confirm',
-            name: 'tableContent',
-            message: 'Would you like to create a table of contents?',
-            default: true,
+            name: 'confirmAdd',
+            message: 'Would you like to add another person?',
+            default: false,
+            // when:({confirmAdd})=>{
+            //     if (confirmAdd) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // }
         },
+
       ])
+      .then (data =>{
+          data.teamArr.push(data);
+          if (data.teamArr) {
+              return promptQuestions(data);
+          } else {
+              return data; 
+          }
+      })
 }
 
 
 
 
 promptQuestions()
-.then(data => {
-    fs.writeFile('./dist/index.html', generateMarkdown(data), err => {
+    // .then(data=> {
+    //     return generateSite(data);
+    // })
+    .then(data => {
+        fs.writeFile('./dist/index.html', generateSite(data), err => {
         if (err) throw err;
         console.log('File saved!');
-    })
- }) 
+        })
+    }) 
     
