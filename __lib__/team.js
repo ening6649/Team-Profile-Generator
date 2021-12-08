@@ -1,4 +1,4 @@
-const { getSystemErrorName } = require("util");
+
 
 class Employee {
     constructor(name,id,email,) {
@@ -13,8 +13,9 @@ class Employee {
         return email;
     }
     getId(id){
-        this.id.forEach(element => {
-            
+        this.id.forEach(eachid=> {
+            eachid.id =1;
+            eachid.id++;
         });
 
     }

@@ -41,14 +41,15 @@ const generateProjects = projectsArr => {
     `;
   };
 
-const generateCard = teamArr => {
+
+const generateCard = data => {
     return `<div class="row">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-        <h5 class="card-title">${name}${role}</h5>
+        <h5 class="card-title">${data.name}${data.role}</h5>
         <p class="card-text">${Id}.</p>
-        <a href="${email}" class="btn btn-primary">Go somewhere</a>
-        <a href="${github}" class="btn btn-primary">Go somewhere</a>
+        <a href="${data.email}" class="btn btn-primary">Go somewhere</a>
+        <a href="${data.github}" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
     </div>

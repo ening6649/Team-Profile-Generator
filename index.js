@@ -2,10 +2,16 @@ const inquirer = require("inquirer")
 const fs = require("fs")
 const generateSite = require ("./src/page-template")
 
-const promptQuestions = data=> {
-    if (!data.teamArr) {
-        data.teamArr= [];
-    }
+const promptQuestions = ()=> {
+    
+       
+    
+    // console.log(data.teamArr)
+    console.log(`
+    =================
+    Add a New Employee
+    =================
+    `);
     return inquirer.prompt([
         
         {
@@ -65,35 +71,31 @@ const promptQuestions = data=> {
             name: 'confirmAdd',
             message: 'Would you like to add another person?',
             default: false,
-            // when:({confirmAdd})=>{
-            //     if (confirmAdd) {
-            //         return true;
-            //     } else {
-            //         return false;
-            //     }
-            // }
+            
         },
 
       ])
-      .then (data =>{
-          data.teamArr.push(data);
-          if (data.teamArr) {
-              return promptQuestions(data);
-          } else {
-              return data; 
-          }
+      .then (employeeData =>{
+        employeeData.employeeArr= [];
+        console.log(employeeData.employeeArr)
+        employeeData.employeeArr.push(employeeData);
+        if (employeeData.confirmAdd) {
+            return promptQuestions(employeeData);
+        } else {
+            return employeeData; 
+        }
       })
 }
-
-
-
 
 promptQuestions()
     // .then(data=> {
     //     return generateSite(data);
     // })
+   
     .then(data => {
-        fs.writeFile('./dist/index.html', generateSite(data), err => {
+        console.log(promptQuestions())
+        console.log(data)
+        fs.writeFile('./dist/index.html', generateSite(employeeData), err => {
         if (err) throw err;
         console.log('File saved!');
         })
