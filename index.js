@@ -1,8 +1,7 @@
 const inquirer = require("inquirer")
 const fs = require("fs")
 const generateSite = require ("./src/page-template");
-// const Employee = require("./__lib__/team");
-// const Employee = require ("./__lib__/team")
+
 
 const employeeArr =[]
 
@@ -21,23 +20,6 @@ const promptQuestions = ()=> {
             choices: ['employee', 'manager', 'engineer', 'intern']
           
         },
-
-       
-        // {
-        //     type: 'input',
-        //     name: 'officenumber',
-        //     message: 'Enter the office number(Required)',
-        //     validate: githubInput => {
-        //         if (githubInput) {
-        //             return true;
-        //         } else {
-        //             console.log('Please enter an office number!');
-        //             return false;
-        //         }
-        //     }
-        // },
-    
-
       ])
       .then (employeeData=>{
         // if (!employeeData.employeeArr) {
@@ -132,6 +114,106 @@ const promptQuestions = ()=> {
                 },
             ])        
         } 
+        if (employeeData.type=="manager") {
+            return inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Enter the name? (Required)',
+                    validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter a name!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: 'Enter the email(Required)',
+                    validate: githubInput => {
+                        if (githubInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter an email address!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'input',
+                    name: 'officenumber',
+                    message: 'Enter the office number(Required)',
+                    validate: githubInput => {
+                        if (githubInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter an office number!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmAdd',
+                    message: 'Would you like to add another person?',
+                    default: false,
+                    
+                },
+            ])
+        } 
+        if (employeeData.type=="intern") {
+            return inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Enter the name? (Required)',
+                    validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter a name!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: 'Enter the email(Required)',
+                    validate: githubInput => {
+                        if (githubInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter an email address!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'input',
+                    name: 'school',
+                    message: 'Enter the school(Required)',
+                    validate: githubInput => {
+                        if (githubInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter a school!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmAdd',
+                    message: 'Would you like to add another person?',
+                    default: false,
+                    
+                },
+            ])
+        } 
       })
       .then (employeeData =>{
         // employeeData.employeeArr= [];
@@ -147,33 +229,13 @@ const promptQuestions = ()=> {
             return employeeArr; 
         }
       })
-    //   .then (test=>{
-    //       return inquirer.prompt ([
-            // {
-            //     type: 'confirm',
-            //     name: 'confirmAdd',
-            //     message: 'Would you like to add another person?',
-            //     default: false,
-                
-            // },
-    //       ])
-    //   })
-    //   .then (employeeData=>{
-    //     if (employeeData.confirmAdd) {
-    //         return promptQuestions(employeeData);
-    //     } else {
-    //         return employeeData; 
-    //     }
-    //   })
     
 }
 
 
 
 promptQuestions()
-    // .then(data=> {
-    //     return generateSite(data);
-    // })
+    
     .then(employeeData => {
         // if (!employeeData.confirmAdd)
         console.log("line97 fired")
@@ -184,13 +246,4 @@ promptQuestions()
     }) 
 
 
-    // function greeting(name) {
-    //     alert('Hello ' + name);
-    //   }
-      
-    //   function processUserInput(callback) {
-    //     var name = prompt('Please enter your name.');
-    //     callback(name);
-    //   }
-      
-    //   processUserInput(greeting);
+  
