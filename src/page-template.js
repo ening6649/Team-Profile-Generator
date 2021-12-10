@@ -19,6 +19,9 @@
 //           `;
 //           })
 //           .join('')}
+
+const Employee = require("../__lib__/team");
+
   
 //         ${projectsArr
 //           .filter(({ feature }) => !feature)
@@ -44,19 +47,26 @@
 
 
 const generateCard = (templateData) => {
-    console.log(templateData.employeeArr[0])
+    console.log(templateData)
     console.log("line47fired")
-    return `<div class="row">
+    
+    let results = templateData.map(eachperson=> {
+      return `<div class="row">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-        <h5 class="card-title">${templateData.name} test role</h5>
+        <h5 class="card-title">${eachperson.name} test role</h5>
         <p class="card-text">test id.</p>
-        <a href="${templateData.email}" class="btn btn-primary">Email: ${templateData.email}</a>
-        <a href="${templateData.github}" class="btn btn-primary">Github: ${templateData.github}</a>
+        <a href="${eachperson.email}" class="btn btn-primary">Email: ${eachperson.email}</a>
+        <a href="${eachperson.github}" class="btn btn-primary">Github: ${eachperson.github}</a>
         </div>
     </div>
     </div>
     `
+    });
+    
+    return results.join('');
+    
+    
 }
 
 module.exports = templateData => {
@@ -83,6 +93,7 @@ module.exports = templateData => {
             </header>
             <main class="container">
                 ${generateCard(templateData)}
+
             </main>
         </body>
         </html>

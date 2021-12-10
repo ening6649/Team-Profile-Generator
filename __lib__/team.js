@@ -118,35 +118,35 @@ class Intern extends Employee {
     }
 }
 
-const promptQuestions = ()=> {
+// const promptQuestions = ()=> {
     
        
     
-    // console.log(data.teamArr)
-    console.log(`
-    =================
-    Add a New Employee
-    =================
-    `);
-    return inquirer.prompt([
-        {
-            type: 'list',
-            name: 'type',
-            message: 'what type of employee? (select one)',
-            choices: ['employee', 'manager', 'engineer', 'intern']
+//     // console.log(data.teamArr)
+//     console.log(`
+//     =================
+//     Add a New Employee
+//     =================
+//     `);
+//     return inquirer.prompt([
+//         {
+//             type: 'list',
+//             name: 'type',
+//             message: 'what type of employee? (select one)',
+//             choices: ['employee', 'manager', 'engineer', 'intern']
           
-        },
-    ])
-    .then (employeeData=>{
-        const employee = new Employee
-        if(employeeData.type=="employee") {
-            employee.getName();
-            employee.getEmail();
-        }
-    })
-}
+//         },
+//     ])
+//     .then (employeeData=>{
+//         const employee = new Employee
+//         if(employeeData.type=="employee") {
+//             employee.getName();
+//             employee.getEmail();
+//         }
+//     })
+// }
 
-promptQuestions()
+// promptQuestions()
 
 
 module.exports = Employee;

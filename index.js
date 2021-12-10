@@ -1,14 +1,13 @@
 const inquirer = require("inquirer")
 const fs = require("fs")
 const generateSite = require ("./src/page-template");
-const Employee = require("./__lib__/team");
+// const Employee = require("./__lib__/team");
 // const Employee = require ("./__lib__/team")
+
+const employeeArr =[]
 
 const promptQuestions = ()=> {
     
-       
-    
-    // console.log(data.teamArr)
     console.log(`
     =================
     Add a New Employee
@@ -41,6 +40,10 @@ const promptQuestions = ()=> {
 
       ])
       .then (employeeData=>{
+        // if (!employeeData.employeeArr) {
+        //     return employeeData.employeeArr = []
+        // }
+        // employeeData.employeeArr = []
         if (employeeData.type=="employee") {
             return inquirer.prompt([
                 {
@@ -69,8 +72,16 @@ const promptQuestions = ()=> {
                         }
                     }
                 },
+                {
+                    type: 'confirm',
+                    name: 'confirmAdd',
+                    message: 'Would you like to add another person?',
+                    default: false,
+                    
+                },
             ])
         } 
+
         if (employeeData.type=="engineer") {
             return inquirer.prompt([
                 {
@@ -112,33 +123,49 @@ const promptQuestions = ()=> {
                         }
                     }
                 },
-            ])
-            
+                {
+                    type: 'confirm',
+                    name: 'confirmAdd',
+                    message: 'Would you like to add another person?',
+                    default: false,
+                    
+                },
+            ])        
         } 
       })
-      .then (employeeData=>{
-          return inquirer.prompt ([
-            {
-                type: 'confirm',
-                name: 'confirmAdd',
-                message: 'Would you like to add another person?',
-                default: false,
-                
-            },
-          ])
-      })
       .then (employeeData =>{
-        employeeData.employeeArr= [];
+        // employeeData.employeeArr= [];
         console.log(employeeData)
-        console.log("line133 fired")
-        testdata = new Employee ('')
-        employeeData.employeeArr.push(employeeData);
+        console.log("139")
+        // testdata = new Employee ('')
+        employeeArr.push(employeeData);
+        console.log(employeeArr)
+        console.log('143')
         if (employeeData.confirmAdd) {
-            return promptQuestions(testdata);
+            return promptQuestions(employeeArr);
         } else {
-            return employeeData; 
+            return employeeArr; 
         }
       })
+    //   .then (test=>{
+    //       return inquirer.prompt ([
+            // {
+            //     type: 'confirm',
+            //     name: 'confirmAdd',
+            //     message: 'Would you like to add another person?',
+            //     default: false,
+                
+            // },
+    //       ])
+    //   })
+    //   .then (employeeData=>{
+    //     if (employeeData.confirmAdd) {
+    //         return promptQuestions(employeeData);
+    //     } else {
+    //         return employeeData; 
+    //     }
+    //   })
+    
 }
 
 
@@ -150,7 +177,7 @@ promptQuestions()
     .then(employeeData => {
         // if (!employeeData.confirmAdd)
         console.log("line97 fired")
-        fs.writeFile('./dist/index.html', generateSite(employeeData), err => {
+        fs.writeFile('./dist/index.html', generateSite(employeeArr), err => {
         if (err) throw err;
         console.log('File saved!');
         })
