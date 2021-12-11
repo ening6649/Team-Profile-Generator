@@ -55,6 +55,12 @@ const promptQuestions = ()=> {
                     }
                 },
                 {
+                    type: 'input',
+                    name: 'id',
+                    message: 'Enter an ID ',
+                    default:"1"
+                },
+                {
                     type: 'confirm',
                     name: 'confirmAdd',
                     message: 'Would you like to add another person?',
@@ -104,6 +110,12 @@ const promptQuestions = ()=> {
                             return false;
                         }
                     }
+                },
+                {
+                    type: 'input',
+                    name: 'id',
+                    message: 'Enter an ID ',
+                    default:"1"
                 },
                 {
                     type: 'confirm',
@@ -156,6 +168,12 @@ const promptQuestions = ()=> {
                     }
                 },
                 {
+                    type: 'input',
+                    name: 'id',
+                    message: 'Enter an ID ',
+                    default:"1"
+                },
+                {
                     type: 'confirm',
                     name: 'confirmAdd',
                     message: 'Would you like to add another person?',
@@ -206,6 +224,12 @@ const promptQuestions = ()=> {
                     }
                 },
                 {
+                    type: 'input',
+                    name: 'id',
+                    message: 'Enter an ID ',
+                    default:"1"
+                },
+                {
                     type: 'confirm',
                     name: 'confirmAdd',
                     message: 'Would you like to add another person?',
@@ -229,7 +253,6 @@ const promptQuestions = ()=> {
             return employeeArr; 
         }
       })
-    
 }
 
 
