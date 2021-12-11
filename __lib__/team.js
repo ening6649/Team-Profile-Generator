@@ -156,3 +156,41 @@ module.exports = Employee;
 //     Intern,
 
 // }
+
+function Algo() {}
+
+Algo.prototype.reverse = function(str) {
+  // TODO: Your code here
+  // TODO: convert string to an array
+  // TODO: reverse substrings in array
+  // TODO: convert array back into a string
+  let arr = str.split("");
+  // if split is empty , split each word and put into an arry 
+  let output = "";
+  for(let i=arr.length-1; i>=0;i--) {
+    output = output + arr[i];
+  }
+  return output;
+};
+
+Algo.prototype.isPalindrome = function(str) {
+  // TODO: Your code here
+  let backwards = this.reverse(str);
+  // shorthand  return str===backwards;
+  if (str==backwards) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+Algo.prototype.capitalize = function(str) {
+  // TODO: Your code here
+  let wordsArr = str.split(" ");
+  let capArr = wordsArr.map(word =>{
+    return word.substring(0,1).toUpperCase() + word.substring(1)
+  });
+  return capArr.join(" ");
+};
+
+module.exports = Algo;
