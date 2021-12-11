@@ -20,4 +20,4 @@
 * The application passes all jest tests
 * for each of the role
 * work in progress
-## walkthrough video: <a href="https://watch.screencastify.com/v/lSDNMXvR0zVmETxoAN1K">My walkthrough video</a>
+## walkthrough video: <a href="https://watch.screencastify.com/v/fsJkmLVtJHH60p8Yzohz">My walkthrough video</a>
